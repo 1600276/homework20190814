@@ -104,12 +104,12 @@ $(function(){
         $('.marquee').html(e.message).marquee();
     });
     @endif
-    
+
     $('.marquee').marquee({
     //duration in milliseconds of the marquee
     // duration: 15000,
     //gap in pixels between the tickers
-    gap: 50,
+    gap: 150,
     //time in milliseconds before the marquee will start animating
     delayBeforeStart: 0,
     //'left' or 'right'
