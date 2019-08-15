@@ -30,9 +30,10 @@
     </div>
     <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
+                {{-- <button type="submit" class="btn btn-primary">
                     Send
-                </button>
+                </button> --}}
+                <input type="button" onclick="$.post('/Broadcast',{'_token': '{{ csrf_token() }}','content':$('#content').val()},function(result){alert('Message Sent!');});" class="btn btn-success" value="Send">
                 <input type="button" onclick="location='/home'" class="btn btn-danger" value="Cancel">
             </div>
         </div>

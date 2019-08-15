@@ -23,7 +23,7 @@ class BroadcastController extends Controller
         }
 
         event(new Message($request->content));
-        return view("broadcast.index");
+        // return view("broadcast.index");
     }
 
 }

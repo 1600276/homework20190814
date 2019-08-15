@@ -10,9 +10,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="/scripts/jquery-1.9.1.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript" defer></script>
 
+<style>
+.marquee {
+  width: 300px; /* the plugin works for responsive layouts so width is not necessary */
+  overflow: hidden;
+  border:1px solid #ccc;
+}
+</style>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -37,6 +45,8 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
+                    
+                    <div class='marquee'>Broadcasting...</div>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -84,13 +94,26 @@
             @yield('content')
         </main>
     </div>
-{{-- <script src="{{ mix('js/app.js') }}"></script> --}}
 <script>
 $(function(){
 	Echo.channel('message')
         .listen('Message', (e) => {
-        alert(e.message);
-	});
+        // alert(e.message);
+        console.log(e.message);
+        $('.marquee').html(e.message).marquee();
+    });
+    $('.marquee').marquee({
+    //duration in milliseconds of the marquee
+    // duration: 15000,
+    //gap in pixels between the tickers
+    gap: 50,
+    //time in milliseconds before the marquee will start animating
+    delayBeforeStart: 0,
+    //'left' or 'right'
+    direction: 'left',
+    //true or false - should the marquee be duplicated to show an effect of continues flow
+    duplicated: true
+    });
 });
 </script>
 </body>
