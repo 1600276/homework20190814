@@ -96,12 +96,15 @@
     </div>
 <script>
 $(function(){
-	Echo.channel('message')
+    @if (Auth::check() && Auth::user()->subscribed)
+	Echo.channel("message")
         .listen('Message', (e) => {
         // alert(e.message);
         console.log(e.message);
         $('.marquee').html(e.message).marquee();
     });
+    @endif
+    
     $('.marquee').marquee({
     //duration in milliseconds of the marquee
     // duration: 15000,
